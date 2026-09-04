@@ -1,3 +1,50 @@
+def display_menu():
+  """Displays menu options.
+
+  Args:
+      None.
+  
+  Returns:
+      None.
+  """
+  # Print menu options
+  print("1. Add Task")
+  print("2. View All Tasks")
+  print("3. Complete Task")
+  print("4. Remove Task")
+  print("5. Save Tasks")
+  print("6. Load Tasks")
+  print("7. Quit")
+
+def get_user_choice():
+  """Calls the display_menu function and asks the user for their choice.
+
+  Args:
+      None.
+
+  Returns:
+      menu_choice: An integer that the user inputs that represents the action 
+      from the menu that they'd like to take.
+  """
+  # Loop to keep prompting the user unil a valid int is entered
+  while True:
+
+    display_menu()
+
+    try:
+      # Prompt the user for their choice
+      menu_choice = int(input("Select an option from the menu: "))
+
+      # Verify that menu_choice is between 1 and 7
+      if menu_choice in range(1, 8):
+        return menu_choice
+      else:
+        print("Error: invalid input. Please enter a number between 1 and 7.")
+
+    # Catch if a user enters something other than an int
+    except ValueError:
+      print("Error: invalid input. Please enter a number between 1 and 7.")
+
 def add_task(tasks):
   """Allow the user to enter task data and add it to the task list.
 
@@ -64,3 +111,31 @@ def load_tasks():
   """
   pass
 
+def main():
+  # Boolean flag for loop control
+  active = True
+
+  # Continue displaying menu and gathering input until the user quits
+  while active:
+    user_choice = get_user_choice()
+
+    # Perform logic for the user's entered menu choice
+    match user_choice:
+      case 1:
+        print("--- Add Task ---")
+      case 2:
+        print("--- View All Tasks ---")
+      case 3:
+        print("--- Complete Task ---")
+      case 4:
+        print("--- Remove Task ---")
+      case 5:
+        print("--- Save Tasks ---")
+      case 6:
+        print("--- Load Tasks ---")
+      case 7:
+        print("Quitting...")
+        active = False
+        print("Thank you. Goodbye")
+
+main()
