@@ -107,12 +107,12 @@ def add_task(tasks):
         tasks.append(task_dictionary)
 
         # Print a success message
-        print(f"[{task_date} - {task_name}] has been added to the task list!")
+        print(f"\n[{task_date} - {task_name}] has been added to the task list!")
 
         # End the loop
         break
       else:
-        print(colored("Error: Please enter a valid date in MM/DD/YYYY format.", 
+        print(colored("\nError: Please enter a valid date in MM/DD/YYYY format.\n", 
                       "red"))
 
 def view_tasks(tasks):
@@ -186,7 +186,7 @@ def main():
     # Perform logic for the user's entered menu choice
     match user_choice:
       case 1:
-        print("\n--- Add Task ---")
+        print("\n--- Add Task ---\n")
         add_task(tasks)
       case 2:
         print("\n--- View All Tasks ---")
