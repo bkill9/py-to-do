@@ -8,7 +8,7 @@ def display_menu():
       None.
   """
   # Print menu options
-  print("1. Add Task")
+  print("\n1. Add Task")
   print("2. View All Tasks")
   print("3. Complete Task")
   print("4. Remove Task")
@@ -39,11 +39,11 @@ def get_user_choice():
       if menu_choice in range(1, 8):
         return menu_choice
       else:
-        print("Error: invalid input. Please enter a number between 1 and 7.")
+        print("\nError: invalid input. Please enter a number between 1 and 7.")
 
     # Catch if a user enters something other than an int
     except ValueError:
-      print("Error: invalid input. Please enter a number between 1 and 7.")
+      print("\nError: invalid input. Please enter a number between 1 and 7.")
 
 def add_task(tasks):
   """Allow the user to enter task data and add it to the task list.
@@ -112,6 +112,7 @@ def load_tasks():
   pass
 
 def main():
+  print("\n=== To-Do List Manager ===")
   # Boolean flag for loop control
   active = True
 
@@ -122,20 +123,20 @@ def main():
     # Perform logic for the user's entered menu choice
     match user_choice:
       case 1:
-        print("--- Add Task ---")
+        print("\n--- Add Task ---")
       case 2:
-        print("--- View All Tasks ---")
+        print("\n--- View All Tasks ---")
       case 3:
-        print("--- Complete Task ---")
+        print("\n--- Complete Task ---")
       case 4:
-        print("--- Remove Task ---")
+        print("\n--- Remove Task ---")
       case 5:
-        print("--- Save Tasks ---")
+        print("\n--- Save Tasks ---")
       case 6:
-        print("--- Load Tasks ---")
+        print("\n--- Load Tasks ---")
       case 7:
-        print("Quitting...")
+        print("\nQuitting...")
         active = False
-        print("Thank you. Goodbye")
+        print("Thank you. Goodbye\n")
 
 main()
