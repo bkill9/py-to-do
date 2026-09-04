@@ -1,3 +1,6 @@
+# For displaying colored output
+from termcolor import colored
+
 def display_menu():
   """Displays menu options.
 
@@ -39,11 +42,11 @@ def get_user_choice():
       if menu_choice in range(1, 8):
         return menu_choice
       else:
-        print("\nError: invalid input. Please enter a number between 1 and 7.")
+        print(colored("\nError: invalid input. Please enter a number between 1 and 7.", "red"))
 
     # Catch if a user enters something other than an int
     except ValueError:
-      print("\nError: invalid input. Please enter a number between 1 and 7.")
+        print(colored("\nError: invalid input. Please enter a number between 1 and 7.", "red"))
 
 def add_task(tasks):
   """Allow the user to enter task data and add it to the task list.
