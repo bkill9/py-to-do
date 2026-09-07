@@ -46,13 +46,11 @@ def get_user_choice():
       if menu_choice in range(1, 8):
         return menu_choice
       else:
-        print(colored("\nError: invalid input. Please enter a number between 1 "
-        "and 7.", "red"))
+        print(colored("\nError - Please enter a number between 1 and 7", "red"))
 
     # Catch if a user enters something other than an int
     except ValueError:
-        print(colored("\nError: invalid input. Please enter a number between 1 "
-        "and 7.", "red"))
+        print(colored("\nError - Please enter a number between 1 and 7", "red"))
 
 def validate_date(date):
   """Checks if the user entered date is formatted as MM/DD/YYYY.
@@ -112,7 +110,7 @@ def add_task(tasks):
         # End the loop
         break
       else:
-        print(colored("\nError: Please enter a valid date in MM/DD/YYYY format.\n", 
+        print(colored("\nError - Please enter a valid date in MM/DD/YYYY format.\n", 
                       "red"))
 
 def view_tasks(tasks):
@@ -152,7 +150,28 @@ def complete_task(tasks):
   Returns:
       None.
   """
-  pass
+  # Display the task list
+  view_tasks(tasks)
+
+  # Keep prompting the user until a valid task is entered
+  while True:
+
+    # Prompt the user for their choice
+    task_to_complete = int(input("Select a task to complete: "))
+
+    try:
+
+      # Convert input into index
+      index_to_complete = task_to_complete - 1
+
+      # Change status of the task to True
+      tasks[index_to_complete]["status"] = True
+
+      # End loop
+      break
+
+    except IndexError:
+      print(colored("\nError - Please enter a task from the task list.\n", "red"))
 
 def remove_task(tasks):
   """Allow the user to select a task and remove it from the task list.
@@ -206,7 +225,8 @@ def main():
         print("\n--- View All Tasks ---\n")
         view_tasks(tasks)
       case 3:
-        print("\n--- Complete Task ---")
+        print("\n--- Complete Task ---\n")
+        complete_task(tasks)
       case 4:
         print("\n--- Remove Task ---")
       case 5:
