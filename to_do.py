@@ -155,22 +155,35 @@ def complete_task(tasks):
 
   # Keep prompting the user until a valid task is entered
   while True:
-
-    # Prompt the user for their choice
-    task_to_complete = int(input("Select a task to complete: "))
-
     try:
+
+      # Prompt the user for their choice
+      task_to_complete = int(input("Select a task to complete: "))
 
       # Convert input into index
       index_to_complete = task_to_complete - 1
 
-      # Change status of the task to True
-      tasks[index_to_complete]["status"] = True
+      # Don't allow negative indexes
+      if index_to_complete >= 0:
 
-      # End loop
-      break
+        # Change status of the task to True
+        tasks[index_to_complete]["status"] = True
 
-    except IndexError:
+        # Get values at the index
+        task_date = tasks[index_to_complete]["date"]
+        task_name = tasks[index_to_complete]["name"]
+
+        # Print success message
+        print(f"\n[{task_date} - {task_name}] has been marked as complete!")
+
+        # End loop
+        break
+
+      else:
+        print(colored("\nError - Please enter a task from the task list.\n", 
+                      "red"))
+
+    except (IndexError, ValueError):
       print(colored("\nError - Please enter a task from the task list.\n", "red"))
 
 def remove_task(tasks):
