@@ -195,7 +195,40 @@ def remove_task(tasks):
   Returns:
       None.
   """
-  pass
+  # Display the task list
+  view_tasks(tasks)
+
+  # Keep prompting user for a valid task
+  while True:
+    try:
+
+      # Prompt user for task to remove
+      task_to_remove = int(input("Select a task to remove: "))
+
+      # Convert input into index
+      index_to_remove = task_to_remove - 1
+
+      # Don't allow negative indexes
+      if index_to_remove >= 0:
+
+        # Remove task
+        removed_task = tasks.pop(index_to_remove)
+
+        # Get date and name of removed task
+        task_date = removed_task["date"]
+        task_name = removed_task["name"]
+
+        # Print success message
+        print(f"\n[{task_date} - {task_name}] has been removed from the task list!")
+
+        # End loop
+        break
+
+      else:
+        print(colored("\nError - Please enter a task from the task list.\n", "red"))
+
+    except (IndexError, ValueError):
+      print(colored("\nError - Please enter a task from the task list.\n", "red"))
 
 def save_tasks(tasks):
   """Allow the user to enter a JSON filename and write the task list to it.
@@ -241,7 +274,8 @@ def main():
         print("\n--- Complete Task ---\n")
         complete_task(tasks)
       case 4:
-        print("\n--- Remove Task ---")
+        print("\n--- Remove Task ---\n")
+        remove_task(tasks)
       case 5:
         print("\n--- Save Tasks ---")
       case 6:
