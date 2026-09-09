@@ -132,21 +132,25 @@ def view_tasks(tasks):
   Returns:
       None.
   """
-  for i, task in enumerate(tasks):
+  # Check if list is empty and display a message if it is
+  if not tasks:
+    print("Nothing to display. Better add some tasks!")
+  else:
+    for i, task in enumerate(tasks):
 
-    # Get task info from dictionary
-    task_status = task.get("status")
-    task_date = task.get("date")
-    task_name = task.get("name")
+      # Get task info from dictionary
+      task_status = task.get("status")
+      task_date = task.get("date")
+      task_name = task.get("name")
 
-    # Check completion status for checkbox display
-    if task_status:
-      checkbox = "[X]"
-    else:
-      checkbox = "[ ]"
+      # Check completion status for checkbox display
+      if task_status:
+        checkbox = "[X]"
+      else:
+        checkbox = "[ ]"
 
-    # Print task with index + 1 for readability
-    print(f"{i + 1}. {checkbox} {task_date} - {task_name}")
+      # Print task with index + 1 for readability
+      print(f"{i + 1}. {checkbox} {task_date} - {task_name}")
 
 def complete_task(tasks):
   """Allow the user to select a task and mark it as complete.
