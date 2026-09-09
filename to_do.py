@@ -52,7 +52,7 @@ def get_user_choice():
     except ValueError:
         print(colored("\nError - Please enter a number between 1 and 7.", "red"))
 
-def validate_date(date):
+def check_date_formatting(date):
   """Checks if the user entered date is formatted as MM/DD/YYYY.
 
   Args:
@@ -73,6 +73,29 @@ def validate_date(date):
   except ValueError:
     return False
 
+def is_date_passed(date):
+  """Checks if the user entered date has already passed.
+
+  Args:
+      date: A user entered date.
+  
+  Returns:
+      True or False
+  """
+  try:
+
+    # Parse date into datetime object
+    input_date = datetime.strptime(date, "%m/%d/%Y").date()
+
+    # Compare the entered date with today's date
+    if input_date < datetime.today().date():
+      return False
+    else:
+      return True
+
+  except ValueError:
+    return False
+
 def add_task(tasks):
   """Allow the user to enter task data and add it to the task list.
 
@@ -89,11 +112,18 @@ def add_task(tasks):
       task_date = input("Enter task date (MM/DD/YYYY): ").strip()
 
       # Verify that the task date is formatted correctly before continuing
-      formatted = validate_date(task_date)
+      formatted = check_date_formatting(task_date)
 
-      # End date loop
+      # Verify that the task date has not passed
+      present_or_future = is_date_passed(task_date)
+
+      # End date loop if formatted correctly and date is present or future
       if formatted:
-        break
+        if present_or_future:
+          break
+        else:
+          print(colored("\nError - The entered date has already passed.\n", 
+                        "red"))
       else:
         print(colored("\nError - Please enter a valid date in MM/DD/YYYY format.\n", 
                       "red"))
