@@ -167,7 +167,7 @@ def complete_task(tasks):
   # Display the task list
   view_tasks(tasks)
 
-  #Only continue if the task list isn't empty
+  # Only continue if the task list isn't empty
   if tasks:
 
     # Keep prompting the user until a valid task is entered
@@ -215,37 +215,40 @@ def remove_task(tasks):
   # Display the task list
   view_tasks(tasks)
 
-  # Keep prompting user for a valid task
-  while True:
-    try:
+  # Only continue if task list isn't empty
+  if tasks:
 
-      # Prompt user for task to remove
-      task_to_remove = int(input("Select a task to remove: "))
+    # Keep prompting user for a valid task
+    while True:
+      try:
 
-      # Convert input into index
-      index_to_remove = task_to_remove - 1
+        # Prompt user for task to remove
+        task_to_remove = int(input("Select a task to remove: "))
 
-      # Don't allow negative indexes
-      if index_to_remove >= 0:
+        # Convert input into index
+        index_to_remove = task_to_remove - 1
 
-        # Remove task
-        removed_task = tasks.pop(index_to_remove)
+        # Don't allow negative indexes
+        if index_to_remove >= 0:
 
-        # Get date and name of removed task
-        task_date = removed_task["date"]
-        task_name = removed_task["name"]
+          # Remove task
+          removed_task = tasks.pop(index_to_remove)
 
-        # Print success message
-        print(f"\n[{task_date} - {task_name}] has been removed from the task list!")
+          # Get date and name of removed task
+          task_date = removed_task["date"]
+          task_name = removed_task["name"]
 
-        # End loop
-        break
+          # Print success message
+          print(f"\n[{task_date} - {task_name}] has been removed from the task list!")
 
-      else:
+          # End loop
+          break
+
+        else:
+          print(colored("\nError - Please enter a task from the task list.\n", "red"))
+
+      except (IndexError, ValueError):
         print(colored("\nError - Please enter a task from the task list.\n", "red"))
-
-    except (IndexError, ValueError):
-      print(colored("\nError - Please enter a task from the task list.\n", "red"))
 
 def save_tasks(tasks):
   """Allow the user to enter a JSON filename and write the task list to it.
