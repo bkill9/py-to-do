@@ -213,18 +213,24 @@ def complete_task(tasks):
         # Don't allow negative indexes
         if index_to_complete >= 0:
 
-          # Change status of the task to True
-          tasks[index_to_complete]["status"] = True
+          # Check if the selected task is already complete
+          if tasks[index_to_complete]["status"]:
+            print("\nThe selected task has already been completed. Good job!")
+            break
+          else:
 
-          # Get values at the index
-          task_date = tasks[index_to_complete]["date"]
-          task_name = tasks[index_to_complete]["name"]
+            # Change status of the task to True
+            tasks[index_to_complete]["status"] = True
 
-          # Print success message
-          print(f"\n[{task_date} - {task_name}] has been marked as complete!")
+            # Get values at the index
+            task_date = tasks[index_to_complete]["date"]
+            task_name = tasks[index_to_complete]["name"]
 
-          # End loop
-          break
+            # Print success message
+            print(f"\n[{task_date} - {task_name}] has been marked as complete!")
+
+            # End loop
+            break
 
         else:
           print(colored("\nError - Please enter a task from the task list.\n", 
