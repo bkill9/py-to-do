@@ -46,11 +46,11 @@ def get_user_choice():
       if menu_choice in range(1, 8):
         return menu_choice
       else:
-        print(colored("\nError - Please enter a number between 1 and 7", "red"))
+        print(colored("\nError - Please enter a number between 1 and 7.", "red"))
 
     # Catch if a user enters something other than an int
     except ValueError:
-        print(colored("\nError - Please enter a number between 1 and 7", "red"))
+        print(colored("\nError - Please enter a number between 1 and 7.", "red"))
 
 def validate_date(date):
   """Checks if the user entered date is formatted as MM/DD/YYYY.
@@ -86,32 +86,42 @@ def add_task(tasks):
   while True:
 
       # Prompt user for task date
-      task_date = input("Enter task date (MM/DD/YYYY): ")
+      task_date = input("Enter task date (MM/DD/YYYY): ").strip()
 
       # Verify that the task date is formatted correctly before continuing
       formatted = validate_date(task_date)
 
+      # End date loop
       if formatted:
-        task_name = input("Enter task name: ")
-
-        # Create task dictionary and add it to task list
-        task_status = False
-
-        task_dictionary = {
-          "status": task_status, 
-          "date": task_date, 
-          "name": task_name}
-
-        tasks.append(task_dictionary)
-
-        # Print a success message
-        print(f"\n[{task_date} - {task_name}] has been added to the task list!")
-
-        # End the loop
         break
       else:
         print(colored("\nError - Please enter a valid date in MM/DD/YYYY format.\n", 
                       "red"))
+
+  # Loop to keep prompting the user until a non empty name is entered
+  while True:
+    task_name = input("Enter task name: ").strip()
+
+    # Verify that the task name is not empty
+    if not task_name:
+      print(colored("\nError - Task name cannot be empty.\n", "red"))
+    else:
+
+      # End name loop
+      break
+
+  # Create task dictionary and add it to task list
+  task_status = False
+
+  task_dictionary = {
+    "status": task_status, 
+    "date": task_date, 
+    "name": task_name}
+
+  tasks.append(task_dictionary)
+
+  # Print a success message
+  print(f"\n[{task_date} - {task_name}] has been added to the task list!")
 
 def view_tasks(tasks):
   """Display all tasks in a readable format.
