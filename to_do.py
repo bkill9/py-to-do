@@ -4,6 +4,9 @@ from termcolor import colored
 # For checking date formatting
 from datetime import datetime
 
+# For file saving/loading
+import json
+
 def display_menu():
   """Displays menu options.
 
@@ -295,7 +298,15 @@ def save_tasks(tasks):
   Returns:
       None.
   """
-  pass
+  # Prompt the user for the file they want to save to
+  json_filename = input("Enter the JSON filename (e.g. tasks.json): ").strip()
+
+  # Save task list to json file
+  with open(json_filename, "w") as file:
+    json.dump(tasks, file, indent=4)
+
+  # Print success message
+  print(f"\nTask list saved to [{json_filename.strip()}]!")
 
 def load_tasks():
   """Load task data from a JSON file.
@@ -333,7 +344,8 @@ def main():
         print("\n--- Remove Task ---\n")
         remove_task(tasks)
       case 5:
-        print("\n--- Save Tasks ---")
+        print("\n--- Save Tasks ---\n")
+        save_tasks(tasks)
       case 6:
         print("\n--- Load Tasks ---")
       case 7:
