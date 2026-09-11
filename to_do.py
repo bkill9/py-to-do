@@ -298,15 +298,27 @@ def save_tasks(tasks):
   Returns:
       None.
   """
-  # Prompt the user for the file they want to save to
-  json_filename = input("Enter the JSON filename (e.g. tasks.json): ").strip()
+  # Loop until the user enters a json file
+  while True:
 
-  # Save task list to json file
-  with open(json_filename, "w") as file:
-    json.dump(tasks, file, indent=4)
+    # Prompt the user for the file they want to save to
+    json_filename = input("Enter the JSON filename (e.g. tasks.json): ").strip()
 
-  # Print success message
-  print(f"\nTask list saved to [{json_filename.strip()}]!")
+    # Verify the file is a json file
+    if json_filename.endswith(".json"):
+
+      # Save task list to json file
+      with open(json_filename, "w") as file:
+        json.dump(tasks, file, indent=4)
+
+      # Print success message
+      print(f"\nTask list saved to [{json_filename.strip()}]!")
+
+      # End loop
+      break
+
+    else:
+      print(colored("\nError - Please enter a JSON filename.\n", "red"))
 
 def load_tasks():
   """Load task data from a JSON file.

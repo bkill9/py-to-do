@@ -2,16 +2,6 @@
     {
         "status": false,
         "date": "09/12/2026",
-        "name": "Mow lawn"
-    },
-    {
-        "status": false,
-        "date": "09/12/2026",
-        "name": "Clean bathroom"
-    },
-    {
-        "status": false,
-        "date": "09/12/2026",
-        "name": "Practice guitar"
+        "name": "Wash dishes"
     }
 ]
