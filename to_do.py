@@ -320,13 +320,31 @@ def save_tasks(tasks):
     else:
       print(colored("\nError - Please enter a JSON filename.\n", "red"))
 
-def load_tasks():
+def load_tasks(tasks):
   """Load task data from a JSON file.
 
   Returns:
       A list of dictionaries populated with task data.
   """
-  pass
+  # Loop until the user enters a json file
+  while True:
+  
+    # Prompt the user for the file they want to load from
+    json_filename = input("Enter the JSON filename (e.g. tasks.json): ").strip()
+  
+    # Verify the file is a json file
+    if json_filename.endswith(".json"):
+  
+      # Load file data into task list
+      with open(json_filename, "r") as file:
+        tasks = json.load(file)
+
+      # Print success message
+      print(f"\nTasks have been loaded!")
+  
+      return tasks
+    else:
+      print(colored("\nError - Please enter a JSON filename.\n", "red"))
 
 def main():
   print("\n=== To-Do List Manager ===")
@@ -359,7 +377,8 @@ def main():
         print("\n--- Save Tasks ---\n")
         save_tasks(tasks)
       case 6:
-        print("\n--- Load Tasks ---")
+        print("\n--- Load Tasks ---\n")
+        tasks = load_tasks(tasks)
       case 7:
         print("\nQuitting...")
         active = False
