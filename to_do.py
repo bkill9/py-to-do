@@ -182,8 +182,15 @@ def view_tasks(tasks):
       else:
         checkbox = "[ ]"
 
-      # Print task with index + 1 for readability
-      print(f"{i + 1}. {checkbox} {task_date} - {task_name}")
+      # Print in red if task has expired
+      valid_date = is_date_passed(task_date)
+
+      if valid_date:
+
+        # Print task with index + 1 for readability
+        print(f"{i + 1}. {checkbox} {task_date} - {task_name}")
+      else:
+        print(colored(f"{i + 1}. {checkbox} {task_date} - {task_name}", "red"))
 
 def complete_task(tasks):
   """Allow the user to select a task and mark it as complete.
