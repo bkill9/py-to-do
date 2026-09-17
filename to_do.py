@@ -333,25 +333,30 @@ def load_tasks(tasks):
   Returns:
       A list of dictionaries populated with task data.
   """
-  # Loop until the user enters a json file
-  while True:
+  try:
   
-    # Prompt the user for the file they want to load from
-    json_filename = input("Enter the JSON filename (e.g. tasks.json): ").strip()
-  
-    # Verify the file is a json file
-    if json_filename.endswith(".json"):
-  
-      # Load file data into task list
-      with open(json_filename, "r") as file:
-        tasks = json.load(file)
+    # Loop until the user enters a json file
+    while True:
+    
+      # Prompt the user for the file they want to load from
+      json_filename = input("Enter the JSON filename (e.g. tasks.json): ").strip()
+    
+      # Verify the file is a json file
+      if json_filename.endswith(".json"):
+    
+        # Load file data into task list
+        with open(json_filename, "r") as file:
+          tasks = json.load(file)
 
-      # Print success message
-      print(f"\nTasks have been loaded!")
-  
-      return tasks
-    else:
-      print(colored("\nError - Please enter a JSON filename.\n", "red"))
+        # Print success message
+        print(f"\nTasks have been loaded!")
+    
+        return tasks
+      else:
+        print(colored("\nError - Please enter a JSON filename.\n", "red"))
+  except FileNotFoundError:
+    print(colored(f"\nError - The file [{json_filename}] does not exist.", "red"))
+
 
 def main():
   print("\n=== To-Do List Manager ===")
