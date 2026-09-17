@@ -394,6 +394,6 @@ def main():
       case 7:
         print("\nQuitting...")
         active = False
-        print("Thank you. Goodbye\n")
+        print("Thank you. Goodbye.\n")
 
 main()
