@@ -1,12 +1,27 @@
 [
     {
-        "status": false,
+        "status": true,
         "date": "09/12/2026",
         "name": "Wash dishes"
     },
     {
+        "status": true,
+        "date": "09/17/2026",
+        "name": "Laundry"
+    },
+    {
         "status": false,
-        "date": "09/15/2026",
-        "name": "Babysit"
+        "date": "09/18/2026",
+        "name": "Mow lawn"
+    },
+    {
+        "status": false,
+        "date": "09/19/2026",
+        "name": "Vacuum"
+    },
+    {
+        "status": false,
+        "date": "09/19/2026",
+        "name": "Change sheets"
     }
 ]
